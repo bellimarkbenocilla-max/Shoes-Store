@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+  <meta charset="UTF-8">
+  <title>Shoes store</title>
+  <style>
+<center>
+
+body { font-family: Arial;         margin:20px; }
+    nav { margin-bottom:20px; }
+    nav button { margin-right:10px; }
+    .product, .cart-item { border:1px solid #ccc; padding:10px; margin:10px 0; }
+
+{
+
+}
+header {
+     background-color: maroon;
+     color: white;
+     text-align: center;
+     padding:20px;
+
+}
+main {
+     padding:30px
+     min-height:300px; /* Just to add some space */
+
+}
+footer {
+      
+
+}
+body {background-color:white;}
+</style>
+</head>
+</body>
+
+    
+<body>
+
+<header>
+<center>
+<h1>Affordable Shoes Store 👟 </h1>
+
+
+<!-- Navigation -->
+<nav>
+  <button onclick="showPage('home')">Home</button>
+  <button onclick="showPage('product')">Products</button>
+  <button onclick="showPage('about')">About Us</button>
+</nav>
+</header>
+<main>
+
+
+<!-- HOME -->
+<div id="home">
+  <h2>Welcome to Affordable Shoes Store!👟</h2>
+    <p>
+    Where style meets savings — find trendy, comfy, and budget-friendly shoes for every step you take!
+  </p>
+  <p>
+    Browse your favorite items, add to the cart, and enjoy shopping experience.  
+    Thank you and happy shopping!  
+  </p>
+</center>
+</div>
+</main>
+<footer>
+
+
+<!-- PRODUCTS -->
+<div id="product" 
+style="display:none;">
+  <h2> “Nice Quality and Affordable.”</h2>
+<p> "Affordable Shoes Store – Step into style without stepping out of your budget!" </p>
+  <div class="product">
+    <img src="a.jpeg" height="100" width="100"alt="Adidas Ownthegame 2.0">
+    <p>Adidas Ownthegame 2.0
+- ₱999</p>
+    <button onclick="addToCart('Adidas Ownthegame 2.0',999)">Add to Cart</button>
+  </div>
+  <div class="product">
+    <img src="b.jpeg"height="100" width="100"alt="Samba OG Shoes">
+    <p>Samba OG Shoes- ₱899</p>
+    <button onclick="addToCart('Samba OG Shoes',899)">Add to Cart</button>
+  </div>
+  <div class="product">
+    <img src="c.jpeg"height="100" width="100"alt="Adizero Evo SL Shoes">
+    <p>Adizero Evo SL Shoes- ₱799</p>
+    <button onclick="addToCart('Adizero Evo SL Shoes',799)">Add to Cart</button>
+  </div>
+  <button onclick="showCart()">View Cart</button>
+</div>
+
+<!-- ABOUT -->
+<div id="about" style="display:none;">
+  <h2>About Us</h2>
+  <p>Affordable Shoes Store offers stylish, comfortable, and quality shoes at prices you can afford. We make it easy to look good and feel great—without spending a lot.</p>
+</div>
+
+<!-- CART -->
+<div id="cart" style="display:none;">
+  <h2>Your Cart</h2>
+  <div id="cartItems"></div>
+  <p><b>Total: ₱<span id="total">0</span></b></p>
+  <button onclick="showPage('product')">Continue Shopping</button>
+  <button onclick="checkout()">Checkout</button>
+</div>
+
+<!-- CHECKOUT -->
+<div id="checkout" style="display:none;">
+  <h2>Checkout</h2>
+  <form onsubmit="placeOrder(event)">
+    <p>Name: <input required></p>
+    <p>Address: <input required></p>
+    <p>Phone: <input required></p>
+    <button type="submit">Place Order</button>
+  </form>
+</div>
+
+<!-- DONE -->
+<div id="done" style="display:none;">
+  <h2>🎉 Congratulations!</h2>
+  <p>Your Shoes order has been placed successfully.</p>
+  <button onclick="restart()">Shop Again</button>
+</div>
+
+<script>
+let cart = [];
+
+function showPage(page){
+  ['home','product','about','cart','checkout','done'].forEach(id=>{
+    document.getElementById(id).style.display = (id===page)?'block':'none';
+  });
+}
+
+function addToCart(name, price){
+  cart.push({name, price});
+  alert(name+" added to cart!");
+}
+
+function showCart(){
+  showPage('cart');
+  let items = "", total = 0;
+  cart.forEach(c=>{
+    items += `<div class="cart-item">${c.name} - ₱${c.price}</div>`;
+    total += c.price;
+  });
+  document.getElementById('cartItems').innerHTML = items || "Cart is empty";
+  document.getElementById('total').innerText = total;
+}
+
+function checkout(){ showPage('checkout'); }
+
+function placeOrder(e){
+  e.preventDefault();
+  cart = [];
+  showPage('done');
+}
+
+function restart(){ showPage('product'); }
+</script>
+
+<footer style="background:#222; color:white; padding:20px; margin-top:40px;">
+  <div style="text-align:center;">
+    <p>📍 Address: 123 Shopping St., San Francisco</p>
+    <p>📞 Phone: +63 922 233 4205| ✉ Email: bellimarkshoes@email.com</p>
+
+<p>Follow us on</p>
+  <a href="#" style="color:white; margin:0 10px; text-decoration:none;">Facebook</a>
+  <a href="#" style="color:white; margin:0 10px; text-decoration:none;">Instagram</a>
+  <a href="#" style="color:white; margin:0 10px; text-decoration:none;">Twitter</a>
+
+    <p>
+      <a href="about.html" style="color:#00aced; text-decoration:none;">About Us</a> |
+      <a href="contact.html" style="color:#00aced; text-decoration:none;">Contact</a> |
+      <a href="faq.html" style="color:#00aced; text-decoration:none;">FAQ</a>
+    </p>
+
+  
+    <p>&copy; 2025 My Online Shop</p>
+
+
+  </div>
+</footer>
+
+
+</body>
+</html>
